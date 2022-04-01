@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  issue-resolver:
+    build:
+      context: .
+    ports:
+      - '3000:3000'
+    environment:
+      - DATABASE_URL=mysql://issueresolver:issueresolver@db:3306/issueresolver
+      - BROKER_URL=amqp://rabbitmq:rabbitmq@broker:5672/
+    command: sh start.sh
+    depends_on:
+      - db
+      - broker
+  db:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+  broker:
+    image: rabbitmq:3.8-management-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=rabbitmq
+      - RABBITMQ_DEFAULT_PASS=rabbitmq
+    ports:
+      # management UI
+      - 15672:15672
+    logging:
+      driver: none

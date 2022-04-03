@@ -6,7 +6,7 @@ import path from 'path';
 
 const app = express();
 
-const swaggerDocument = YAML.load(path.join(__dirname, '../swagger.yaml'));
+const swaggerDocument = YAML.load(path.join(__dirname, './swagger.yaml'));
 const routePrefix = '/api/v1/';
 
 app.use(express.json());

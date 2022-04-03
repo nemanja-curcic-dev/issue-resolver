@@ -11,5 +11,6 @@ export class Envs {
 
 	public static BROKER_URL: string = process.env.BROKER_URL || 'amqp://rabbitmq:rabbitmq@localhost:5672/';
 	public static PUBLISH_EXCHANGE_NAME: string = process.env.PUBLISH_EXCHANGE_NAME || 'issue-resolver-exchange';
+	public static USER_AGENT_EXCHANGE_NAME: string = process.env.USER_AGENT_EXCHANGE_NAME || 'user-agent-exchange';
 	public static QUEUE_NAME: string = process.env.QUEUE_NAME || 'issue-resolver-queue';
 }

@@ -7,10 +7,14 @@ RUN mkdir /user && \
 COPY package.json package.json
 RUN npm install
 
-COPY start.sh .babelrc swagger.yaml ./
+COPY .babelrc ./
 COPY src src
 RUN npm run build \
   && rm -rf src
+
+COPY src/issue-resolver/start.sh dist/issue-resolver/start.sh
+COPY src/user-agent/start.sh dist/user-agent/start.sh
+COPY src/issue-resolver/swagger.yaml dist/issue-resolver/swagger.yaml
 
 # Ensure we are not running as root
 USER nobody:nobody

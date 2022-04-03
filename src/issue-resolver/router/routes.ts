@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { IssueRepository } from '../db/repository/issue';
-import { publish } from '../amqp/index';
+import { publish } from '../../common/amqp/index';
 import { Envs } from '../misc/envs';
 import { TypedRequestBody, CreateIssue, UpdateIssue } from '../misc/types';
 import { body, param, validationResult } from 'express-validator';
@@ -48,6 +48,7 @@ router.post(
             description: req.body.description,
             status: 'received',
         });
+        // publish issue received message
         await publish(Envs.PUBLISH_EXCHANGE_NAME, 'issue.received', issue);
         return res.status(201).json(issue);
     }

@@ -9,16 +9,24 @@ services:
     environment:
       - DATABASE_URL=mysql://issueresolver:issueresolver@db:3306/issueresolver
       - BROKER_URL=amqp://rabbitmq:rabbitmq@broker:5672/
-    command: sh start.sh
+    command: sh dist/issue-resolver/start.sh
     depends_on:
       - db
+      - broker
+  user-agent:
+    build:
+      context: .
+    environment:
+        - BROKER_URL=amqp://rabbitmq:rabbitmq@broker:5672/
+    command: sh dist/user-agent/start.sh
+    depends_on:
       - broker
   db:
     image: mysql:5.7
     environment:
       - MYSQL_ROOT_PASSWORD=root
     volumes:
-      - ./setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./issue-resolver/setup.sql:/docker-entrypoint-initdb.d/setup.sql
   broker:
     image: rabbitmq:3.8-management-alpine
     environment:

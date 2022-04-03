@@ -50,4 +50,16 @@ export class IssueRepository {
             }
         );
     };
+
+    setStatus = async (id: number, status: string): Promise<void> => {
+        logger.debug(`Setting status ${status} for id ${id}... `);
+        await this.repo.update(
+            {
+                id: id,
+            },
+            {
+                status: status,
+            }
+        );
+    };
 }

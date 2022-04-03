@@ -26,4 +26,4 @@ echo "Waiting for connection to message broker for ${SLEEP} seconds..."
 sleep ${SLEEP}
 done
 
-node dist/index.js
+node /dist/issue-resolver/index.js

@@ -26,7 +26,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=root
     volumes:
-      - ./issue-resolver/setup.sql:/docker-entrypoint-initdb.d/setup.sql
+      - ./src/issue-resolver/setup.sql:/docker-entrypoint-initdb.d/setup.sql
   broker:
     image: rabbitmq:3.8-management-alpine
     environment:

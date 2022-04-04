@@ -1,5 +1,11 @@
 ## Description
+Example application with basic CRUD operations for issues, and distribution of the issues to user-agents using message queue
 
+### Database
+| MySQL | ![enabled](https://img.icons8.com/color/24/000000/checked.png) |
+
+### Message queue
+| RabbitMQ | ![enabled](https://img.icons8.com/color/24/000000/checked.png) |
 
 ## Usage
 
@@ -8,6 +14,7 @@ docker-compose up
 
 ### Run issue-resolver locally
 npm run start-issue-resolver
+
 ### Run user-agent locally
 npm run start-user-agent
 

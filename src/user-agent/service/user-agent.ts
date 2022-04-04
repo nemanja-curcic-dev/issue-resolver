@@ -1,7 +1,7 @@
 import { IssueReceivedMessage } from '../misc/messages';
 import { publish } from '../../common/amqp';
 import { Envs } from '../misc/envs';
-import logger from '../misc/logger';
+import { logger } from '../misc/logger';
 
 export class UserAgent {
     handleIssueReceived = async (msg: IssueReceivedMessage): Promise<void> => {
@@ -10,9 +10,9 @@ export class UserAgent {
             id: msg.id,
             status: 'in-progress',
         });
-        // Simulate some work being done
+        // Sleep for 10 seconds to simulate some work being done
         logger.info('Resolving issue...');
-        await new Promise((r) => setTimeout(r, 5000));
+        await new Promise((r) => setTimeout(r, 10000));
         // Publish issue.resolved
         await publish(Envs.PUBLISH_EXCHANGE_NAME, 'issue.resolved', {
             id: msg.id,

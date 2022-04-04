@@ -61,6 +61,7 @@ router.post(
             });
             // publish issue received message
             await publish(Envs.PUBLISH_EXCHANGE_NAME, 'issue.received', issue);
+            return res.status(201).json(issue);
         } catch (e) {
             return res.status(500).json({ detail: (e as Error).message });
         }

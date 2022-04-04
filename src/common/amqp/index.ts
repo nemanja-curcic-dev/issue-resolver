@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import amqplib, {Channel, Connection, Message} from 'amqplib';
 import EventEmitter from 'events';
-import logger from '../../issue-resolver/misc/logger';
+import Logger from '../logger';
+
+const logger = Logger.getLogger('amqp');
 
 export interface PublishConsumeData {
     connection: Connection | null;

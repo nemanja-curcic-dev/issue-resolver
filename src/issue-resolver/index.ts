@@ -2,7 +2,7 @@ import dataSource from './db/index';
 import { Server } from 'http';
 import httpApp from './http-app';
 import { Envs } from './misc/envs';
-import logger from './misc/logger';
+import { logger } from './misc/logger';
 import { AmqpApp } from './amqp-app';
 
 let httpServer: Server;

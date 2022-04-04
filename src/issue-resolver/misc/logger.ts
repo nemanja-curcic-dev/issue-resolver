@@ -1,11 +1,5 @@
-import winston  from 'winston';
-import {Envs} from './envs';
+import Logger from '../../common/logger';
+import { Envs } from './envs';
 
-export default winston.createLogger({
-    level: Envs.LOG_LEVEL,
-    format: winston.format.json(),
-    defaultMeta: { service: 'issuer-resolver' },
-    transports: [
-        new winston.transports.Console
-    ],
-});
+export const logger = Logger.getLogger('issue-resolver');
+logger.level = Envs.LOG_LEVEL;

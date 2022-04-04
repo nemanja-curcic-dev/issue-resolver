@@ -1,6 +1,6 @@
 import { AmqpServer } from '../common/amqp';
 import { Envs } from './misc/envs';
-import logger from './misc/logger';
+import { logger } from './misc/logger';
 import { Message } from 'amqplib';
 import { IssueResolver } from './service/issue-resolver';
 import { IssueResolvingMessage } from './misc/messages';

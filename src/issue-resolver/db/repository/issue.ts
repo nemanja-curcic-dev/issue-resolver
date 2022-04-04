@@ -1,7 +1,7 @@
 import { Repository } from 'typeorm';
 import dataSource from '../index';
 import { Issue } from '../models/issue';
-import logger from '../../misc/logger';
+import { logger } from '../../misc/logger';
 import { UpdateIssue } from '../../misc/types';
 
 export class IssueRepository {

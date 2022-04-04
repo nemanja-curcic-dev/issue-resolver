@@ -35,7 +35,7 @@ export class IssueRepository {
     };
 
     deleteIssue = async (id: number): Promise<void> => {
-        logger.debug(`Deleting issue ${id}`);
+        logger.debug(`Deleting issue ${id}... `);
         await this.repo.delete({ id: id });
     };
 

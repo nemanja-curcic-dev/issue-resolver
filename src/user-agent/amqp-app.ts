@@ -77,6 +77,7 @@ export class AmqpApp extends AmqpServer {
                                     content
                                 )}`
                             );
+                            // nack message without requeuing if message data is corrupted (not complete)
                             return this.nack(msg, false);
                         }
                     } catch (e) {
@@ -88,8 +89,6 @@ export class AmqpApp extends AmqpServer {
                     }
 
                     try {
-                        // simulate some work being done
-                        // publish message with status as resolved
                         await this.service.handleIssueReceived(content);
                         this.ack(msg);
                     } catch (e) {
@@ -97,6 +96,7 @@ export class AmqpApp extends AmqpServer {
                             `Could not process ${msg.fields.routingKey}: `,
                             e
                         );
+                        // nack and requeue message if some unexpected error occurred
                         this.nack(msg, true);
                     }
                 }

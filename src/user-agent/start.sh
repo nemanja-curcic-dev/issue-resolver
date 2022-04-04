@@ -1,5 +1,4 @@
 #!/bin/sh
-set -x
 
 ## If no args supplied sleep time defaults to 5 seconds.
 if [[ ${#} -eq 0 ]]
